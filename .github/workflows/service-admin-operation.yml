@@ -1,0 +1,15 @@
+name: FusionCoE Service Operations
+
+on:
+  repository_dispatch:
+
+jobs:
+  perform-service-operation:
+    runs-on: windows-latest
+
+    steps:
+    - name: OnfusionCoe Dispatch
+      uses: fusioncoe/onfusioncoe-actions/process-service-repo-dispatch@v0
+      with:
+        event_type: ${{ github.event.event_type }}
+        payload: ${{ github.event.client_payload }}
