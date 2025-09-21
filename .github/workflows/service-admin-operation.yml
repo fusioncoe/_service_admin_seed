@@ -11,5 +11,7 @@ jobs:
     - name: OnfusionCoe Dispatch
       uses: fusioncoe/onfusioncoe-actions/process-service-repo-dispatch@v0
       with:
-        event_type: ${{ github.event.event_type }}
-        payload: ${{ github.event.client_payload }}
+        client_id: ${{ vars.FUSIONCOE_SP_APPLICATION_ID }}
+        client_secret: ${{ secrets.FUSIONCOE_SP_SECRET }}
+        tenant_id: ${{ vars.FUSIONCOE_SP_TENANT_ID }}
+        cloud: ${{ vars.FUSIONCOE_SP_CLOUD }}        
