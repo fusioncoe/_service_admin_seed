@@ -1,4 +1,5 @@
 name: Ensure Security Group Dispatch
+run-name: ${{ github.event.action }}:${{ github.event.client_payload.dispatch_job_id }}
 
 on:
   repository_dispatch:
