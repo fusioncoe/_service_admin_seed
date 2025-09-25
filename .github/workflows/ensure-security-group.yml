@@ -6,7 +6,7 @@ on:
 
 jobs:
   perform-service-operation:
-    runs-on: windows-latestS
+    runs-on: windows-latest
 
     steps:
     - name: "OnfusionCoE: Ensure Security Group Dispatch"
