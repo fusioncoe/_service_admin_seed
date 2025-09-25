@@ -18,3 +18,4 @@ jobs:
         tenant_id: ${{ vars.FUSIONCOE_SP_TENANT_ID }}
         authority: ${{ vars.FUSIONCOE_SP_AUTHORITY }}        
         cloud: ${{ vars.FUSIONCOE_SP_CLOUD }}
+        event_path: ${{ github.event_path }}               
