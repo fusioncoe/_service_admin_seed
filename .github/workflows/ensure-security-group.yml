@@ -11,6 +11,7 @@ jobs:
 
     steps:
     - name: "OnfusionCoE: Ensure Security Group Dispatch"
+      id: "ens-sec-grp"
       uses: fusioncoe/onfusioncoe-actions-g2/ensure-security-group@v0
       with:
         client_id: ${{ vars.FUSIONCOE_SP_APPLICATION_ID }}
@@ -18,4 +19,9 @@ jobs:
         tenant_id: ${{ vars.FUSIONCOE_SP_TENANT_ID }}
         authority: ${{ vars.FUSIONCOE_SP_AUTHORITY }}        
         cloud: ${{ vars.FUSIONCOE_SP_CLOUD }}
-        event_path: ${{ github.event_path }}                    
+        event_path: ${{ github.event_path }} 
+
+    - name: security-grp-obj-id:${{ steps.ens-sec-grp.outputs.object_id}} 
+      shell: pwsh    
+      run: |
+        echo "Output: ${{ steps.ens-sec-grp.outputs.object_id}}"         
