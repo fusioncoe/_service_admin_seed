@@ -1,0 +1,22 @@
+name: ensure-power-platform-environment
+run-name: ${{ github.event.client_payload.dispatch_payload.current_step }}:${{ github.event.client_payload.dispatch_job_id }}
+
+on:
+  repository_dispatch:
+    types: [ensure-power-platform-environment]
+
+jobs:
+  perform-service-operation:
+    runs-on: windows-latest
+
+    steps:
+    - name: "OnfusionCoE: ensure-power-platform-environment Dispatch"
+      uses: fusioncoe/onfusioncoe-actions-g2/ensure-power-platform-environment@v0
+      with:
+        client_id: ${{ vars.FUSIONCOE_SP_APPLICATION_ID }}
+        client_secret: ${{ secrets.FUSIONCOE_SP_SECRET }}
+        tenant_id: ${{ vars.FUSIONCOE_SP_TENANT_ID }}
+        authority: ${{ vars.FUSIONCOE_SP_AUTHORITY }}        
+        cloud: ${{ vars.FUSIONCOE_SP_CLOUD }}
+        event_path: ${{ github.event_path }}
+        output_private_key: ${{ secrets.FUSIONCOE_SP_PRIVATE_KEY }}   
