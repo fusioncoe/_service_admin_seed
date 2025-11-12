@@ -1,0 +1,65 @@
+# OnFusionCoE Service Admin - Git Ignore
+
+# Security - Never commit secrets or credentials
+*.secret
+*.key
+*.pem
+*.pfx
+*.p12
+secrets.json
+credentials.json
+config.local.*
+
+# PowerShell
+*.ps1xml
+*.psm1
+
+# Local configuration
+.env
+.env.local
+*.local
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+temp/
+tmp/
+
+# Documentation builds
+docs/_build/
+docs/.doctrees/
+
+# Scripts output
+scripts/output/
+scripts/temp/
+
+# Backup files
+*.bak
+*.backup
+
+# Test files (if added in future)
+test-results/
+coverage/
+
+# Node modules (if any scripts use Node)
+node_modules/
+
+# Python (if any scripts use Python)
+__pycache__/
+*.py[cod]
+venv/
+.pytest_cache/
+
+# Do NOT ignore workflow files - they are managed by OnFusionCoE
+!.github/workflows/*.yml
