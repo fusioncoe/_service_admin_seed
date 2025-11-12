@@ -330,7 +330,7 @@ The OnFusionCoE service maintains orchestration logs for:
 - Result verification status
 - Overall process state
 
-Contact your OnFusionCoE administrator for service-level logs and metrics.
+Access service logs and monitoring through the [OnFusionCoE Portal](https://devops.onfusioncoe.com), or contact your OnFusionCoE administrator for service-level logs and metrics.
 
 ## Compliance and Governance
 

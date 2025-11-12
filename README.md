@@ -135,6 +135,7 @@ For detailed information about each workflow, see [WORKFLOWS.md](./docs/WORKFLOW
 
 For issues or questions about OnFusionCoE:
 
+- **OnFusionCoE Portal**: [https://devops.onfusioncoe.com](https://devops.onfusioncoe.com) - Service dashboard and management
 - Review the documentation in the `docs/` directory
 - Check workflow run logs in the Actions tab
 - Contact your OnFusionCoE service administrator

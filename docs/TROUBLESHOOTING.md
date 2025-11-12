@@ -505,6 +505,31 @@ Get-PowerAppManagementApps
 - **Document changes** - Keep a change log for configuration updates
 - **Test changes** - Verify configuration changes in a test environment first
 
+## Getting Additional Help
+
+If the troubleshooting steps above don't resolve your issue:
+
+1. **OnFusionCoE Portal**: Visit [https://devops.onfusioncoe.com](https://devops.onfusioncoe.com) for:
+   - Service status and health dashboards
+   - Support ticket submission
+   - Known issues and announcements
+   - Service documentation and updates
+
+2. **Gather diagnostic information**:
+   - GitHub Actions workflow run URL
+   - Error messages from workflow logs
+   - Entra ID sign-in logs (if authentication-related)
+   - Repository configuration (variables/secrets names, not values)
+   - Cloud environment (Public, GCC, GCC High, DoD)
+
+3. **Contact your OnFusionCoE service administrator** with the gathered information
+
+4. **Check recent changes**:
+   - Recent workflow file modifications
+   - Recent secret/variable updates
+   - Recent Entra ID permission changes
+   - Recent Power Platform configuration changes
+
 ---
 
 **Last Updated:** November 12, 2025

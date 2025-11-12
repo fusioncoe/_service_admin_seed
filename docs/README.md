@@ -178,6 +178,7 @@ Welcome to the OnFusionCoE Service Admin documentation. This directory contains 
 
 ### OnFusionCoE Resources
 
+- [OnFusionCoE Portal](https://devops.onfusioncoe.com) - Service dashboard and management
 - [OnFusionCoE Actions (v0)](https://github.com/fusioncoe/onfusioncoe-actions-g2/tree/v0) - GitHub Actions execution layer
   - Secure proxy actions that run your workflows
   - FsnxApiClient implementation details
@@ -200,10 +201,11 @@ Welcome to the OnFusionCoE Service Admin documentation. This directory contains 
 
 ### Support Channels
 
-1. **Documentation** - All guides in this directory
-2. **Workflow Logs** - Actions tab in repository
-3. **Azure Diagnostics** - Azure AD sign-in logs
-4. **Administrator** - Your OnFusionCoE service administrator
+1. **OnFusionCoE Portal** - [https://devops.onfusioncoe.com](https://devops.onfusioncoe.com) - Service dashboard and support
+2. **Documentation** - All guides in this directory
+3. **Workflow Logs** - Actions tab in repository
+4. **Azure Diagnostics** - Entra ID sign-in and audit logs
+5. **Administrator** - Your OnFusionCoE service administrator
 
 ## 📝 Contributing
 

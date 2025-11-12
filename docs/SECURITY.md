@@ -369,10 +369,11 @@ Use this checklist to ensure your OnFusionCoE setup follows security best practi
 
 For security questions or incident response:
 
-1. Review this documentation
-2. Check [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
-3. Contact your OnFusionCoE administrator
-4. For critical security incidents, follow your organization's incident response procedures
+1. **OnFusionCoE Portal**: [https://devops.onfusioncoe.com](https://devops.onfusioncoe.com) - Service status and support
+2. Review this documentation
+3. Check [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
+4. Contact your OnFusionCoE administrator
+5. For critical security incidents, follow your organization's incident response procedures
 
 ---
 
