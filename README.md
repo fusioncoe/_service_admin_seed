@@ -1,5 +1,9 @@
 # OnFusionCoE Service Admin Repository
 
+<p align="center">
+  <img src="./media/fulllogo_transparent_nobuffer_300w.png" alt="OnFusionCoE Logo" width="300">
+</p>
+
 > **Important:** This repository is automatically created and managed by OnFusionCoE. Do not remove this repository.
 
 ## Overview

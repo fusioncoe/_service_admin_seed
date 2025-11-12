@@ -1,5 +1,9 @@
 # OnFusionCoE Architecture Overview
 
+<p align="center">
+  <img src="../media/icononly_transparent_nobuffer.png" alt="OnFusionCoE" width="60">
+</p>
+
 This document explains how OnFusionCoE components work together to provide secure, automated Power Platform DevOps.
 
 ## System Architecture

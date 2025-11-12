@@ -1,6 +1,12 @@
 # OnFusionCoE Troubleshooting Guide
 
-This guide helps resolve common issues with the OnFusionCoE Service Admin repository.
+# OnFusionCoE Troubleshooting Guide
+
+<p align="center">
+  <img src="../media/icononly_transparent_nobuffer.png" alt="OnFusionCoE" width="60">
+</p>
+
+This guide helps you diagnose and resolve common issues with your OnFusionCoE Service Admin repository.
 
 ## Table of Contents
 

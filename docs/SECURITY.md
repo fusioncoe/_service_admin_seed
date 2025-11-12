@@ -1,5 +1,9 @@
 # OnFusionCoE Security Architecture
 
+<p align="center">
+  <img src="../media/icononly_transparent_nobuffer.png" alt="OnFusionCoE" width="60">
+</p>
+
 This document explains the security mechanisms used by OnFusionCoE to protect your data and authenticate workflow operations.
 
 ## Overview

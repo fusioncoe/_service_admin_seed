@@ -1,5 +1,9 @@
 # OnFusionCoE Quick Start Guide
 
+<p align="center">
+  <img src="../media/icononly_transparent_nobuffer.png" alt="OnFusionCoE" width="60">
+</p>
+
 Get your OnFusionCoE Service Admin repository configured in minutes.
 
 ## Prerequisites Checklist

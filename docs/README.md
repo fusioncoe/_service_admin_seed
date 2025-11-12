@@ -1,5 +1,9 @@
 # OnFusionCoE Service Admin Documentation
 
+<p align="center">
+  <img src="../media/icononly_transparent_nobuffer.png" alt="OnFusionCoE" width="80">
+</p>
+
 Welcome to the OnFusionCoE Service Admin documentation. This directory contains comprehensive guides to help you set up, configure, and troubleshoot your OnFusionCoE Service Admin repository.
 
 ## 📚 Documentation Index

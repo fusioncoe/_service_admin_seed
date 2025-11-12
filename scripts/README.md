@@ -1,5 +1,9 @@
 # OnFusionCoE Setup Scripts
 
+<p align="center">
+  <img src="../media/icononly_transparent_nobuffer.png" alt="OnFusionCoE" width="60">
+</p>
+
 This directory contains helper scripts to streamline the configuration of your OnFusionCoE Service Admin repository.
 
 ## Available Scripts

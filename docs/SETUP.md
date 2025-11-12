@@ -1,5 +1,9 @@
 # OnFusionCoE Service Admin Setup Guide
 
+<p align="center">
+  <img src="../media/icononly_transparent_nobuffer.png" alt="OnFusionCoE" width="60">
+</p>
+
 This guide provides detailed instructions for setting up and configuring your OnFusionCoE Service Admin repository.
 
 ## Recommended: Automated Setup Script

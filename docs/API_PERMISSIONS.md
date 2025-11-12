@@ -1,5 +1,9 @@
 # API Permissions Reference
 
+<p align="center">
+  <img src="../media/icononly_transparent_nobuffer.png" alt="OnFusionCoE" width="60">
+</p>
+
 This document details the API permissions required for OnFusionCoE Service Admin operations.
 
 ## Overview

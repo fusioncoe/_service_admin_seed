@@ -1,6 +1,12 @@
 # OnFusionCoE Workflow Reference
 
-This document provides detailed information about each workflow in the Service Admin repository.
+# OnFusionCoE Workflow Reference
+
+<p align="center">
+  <img src="../media/icononly_transparent_nobuffer.png" alt="OnFusionCoE" width="60">
+</p>
+
+This document provides detailed information about each GitHub Actions workflow in the OnFusionCoE Service Admin repository.
 
 ## Table of Contents
 
