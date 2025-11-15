@@ -56,7 +56,7 @@ OnFusionCoE implements a **zero-trust security model** with multiple layers of p
 1. **No Secret Sharing**: No secrets are ever shared with the OnFusionCoE service
 2. **ID-Only Orchestration**: OnFusionCoE tracks only specific IDs (tenant/application IDs, secret IDs, connection identities) - never actual secret values
 3. **Secure Proxy**: GitHub Actions authenticate on your behalf using your credentials
-4. **Automated Secret Management**: Service automatically rotates secrets within 30 days of expiration and recovers from secret removal
+4. **Automated Secret Management**: Service automatically rotates OnFusionCoE-managed app registration secrets within 30 days of expiration and recovers from secret removal (customer `FUSIONCOE_SP_*` secrets remain under customer control)
 5. **Audit Trail**: Complete operation history in your GitHub Actions runs
 6. **Revocable Access**: You maintain full control over permissions and access
 
@@ -80,12 +80,13 @@ All workflow actions use the `FsnxApiClient` class from the [`fusioncoe/onfusion
   - Tenant and application IDs for service management app registration
   - App registration secret IDs (but not the actual secret values)
   - Environment-specific DevOps and Power Automate connection identities
-- **Automated Secret Lifecycle Management**: For app registration secrets created by the service:
+- **Automated Secret Lifecycle Management**: For app registration secrets created and managed by OnFusionCoE (NOT customer-managed `FUSIONCOE_SP_*` secrets):
   - Tracks secret ID, creation date, expiration date for current and previous versions
   - Automatically updates secrets within 30 days of expiration
   - Creates new secrets if existing ones are removed from Azure/Entra ID
   - Uses dedicated secrets for each resource requiring app registration authentication
   - Names secrets to indicate their specific resource usage scope
+  - **Note**: Customer-managed OnFusionCoE Service Principal secrets (`FUSIONCOE_SP_APPLICATION_ID`, `FUSIONCOE_SP_SECRET`, `FUSIONCOE_SP_TENANT_ID`) remain under complete customer control
 - **Secret Isolation & Scoping**:
   - GitHub repository and environment secrets encrypted using libsodium for new App Registrations
   - Each secret dedicated to a specific resource with narrow scope of use
@@ -121,11 +122,13 @@ The service principal (configured via `FUSIONCOE_SP_APPLICATION_ID`, `FUSIONCOE_
 
 ## Automated Secret Lifecycle Management
 
-OnFusionCoE provides enterprise-grade automated secret lifecycle management that eliminates manual secret rotation tasks and provides self-healing capabilities.
+OnFusionCoE provides enterprise-grade automated secret lifecycle management for app registration secrets created by the service. This eliminates manual secret rotation tasks and provides self-healing capabilities.
+
+**Important**: This automated management applies only to secrets that OnFusionCoE creates and manages for app registrations. Customer-managed OnFusionCoE Service Principal secrets (`FUSIONCOE_SP_APPLICATION_ID`, `FUSIONCOE_SP_SECRET`, `FUSIONCOE_SP_TENANT_ID`) remain under complete customer control and are NOT automatically managed.
 
 ### Secret Rotation Process
 
-- **Automatic Rotation**: All app registration secrets are automatically rotated within 30 days of their expiration date
+- **Automatic Rotation**: App registration secrets created by OnFusionCoE are automatically rotated within 30 days of their expiration date
 - **Proactive Updates**: New secrets created before current ones expire to ensure continuous operation
 - **Zero Downtime**: Rotation process designed to maintain service availability during updates
 - **Version Management**: System tracks current and previous secret versions during transition periods

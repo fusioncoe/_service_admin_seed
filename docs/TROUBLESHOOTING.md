@@ -90,42 +90,48 @@ Use the correct authority URL for your cloud:
 
 ## Automated Secret Management
 
+**Important**: This section applies only to secrets that OnFusionCoE creates and manages for app registrations. Customer-managed OnFusionCoE Service Principal secrets (`FUSIONCOE_SP_APPLICATION_ID`, `FUSIONCOE_SP_SECRET`, `FUSIONCOE_SP_TENANT_ID`) remain under complete customer control and require manual management.
+
 ### Secret rotation failures
 
 **Symptoms:**
 
-- Notifications about secret rotation attempts
-- Workflows failing due to authentication after secret updates
-- Azure portal shows unexpected new secrets
+- Notifications about secret rotation attempts for OnFusionCoE-managed app registration secrets
+- Workflows failing due to authentication after OnFusionCoE secret updates
+- Azure portal shows unexpected new secrets for OnFusionCoE-managed app registrations
 
 **Causes:**
 
-- OnFusionCoE automatic secret rotation process
-- Secrets nearing 30-day expiration window
-- Self-healing response to manually deleted secrets
+- OnFusionCoE automatic secret rotation process for service-managed app registration secrets
+- OnFusionCoE-managed secrets nearing 30-day expiration window
+- Self-healing response to manually deleted OnFusionCoE-managed secrets
 
 **Solutions:**
 
-1. **Normal Operation**: OnFusionCoE automatically manages secret rotation - no action required
-2. **Manual Secret Deletion**: If you manually deleted a secret, OnFusionCoE will recreate it automatically
-3. **GitHub Secret Updates**: If automatic rotation fails, manually update `FUSIONCOE_SP_SECRET` with new value from Azure portal
+1. **Normal Operation**: OnFusionCoE automatically manages app registration secret rotation - no action required
+2. **Manual Secret Deletion**: If you manually deleted an OnFusionCoE-managed secret, OnFusionCoE will recreate it automatically
+3. **GitHub Secret Updates**: OnFusionCoE automatically updates GitHub repository secrets for managed app registrations - no manual action required
+
+**Note**: If experiencing issues with customer-managed `FUSIONCOE_SP_SECRET`, you must manually update this secret as it is not automatically managed by OnFusionCoE.
 
 ### Unexpected secret creation
 
 **Symptoms:**
 
-- New secrets appear in Azure portal without manual creation
-- Multiple secrets exist for the same app registration
+- New secrets appear in Azure portal without manual creation for OnFusionCoE-managed app registrations
+- Multiple secrets exist for the same OnFusionCoE-managed app registration
 
 **Explanation:**
 
-This is normal behavior. OnFusionCoE automatically:
+This is normal behavior for OnFusionCoE-managed app registration secrets. OnFusionCoE automatically:
 
 - Creates new secrets before current ones expire (30-day window)
 - Recreates secrets if they are manually deleted (self-healing)
 - Maintains resource-specific secrets for different authentication contexts
 
-**Action Required:** None - this is automated lifecycle management
+**Action Required:** None - this is automated lifecycle management for OnFusionCoE-managed secrets only
+
+**Note**: Customer-managed `FUSIONCOE_SP_*` secrets will NOT be automatically created or managed by OnFusionCoE.
 
 ### Self-healing secret recreation
 
