@@ -11,6 +11,7 @@ This guide helps you diagnose and resolve common issues with your OnFusionCoE Se
 ## Table of Contents
 
 - [Authentication Issues](#authentication-issues)
+- [Automated Secret Management](#automated-secret-management)
 - [Permission Errors](#permission-errors)
 - [Workflow Execution Problems](#workflow-execution-problems)
 - [Configuration Issues](#configuration-issues)
@@ -86,6 +87,66 @@ Use the correct authority URL for your cloud:
 - **Public/Commercial:** `https://login.microsoftonline.com/`
 - **GCC:** `https://login.microsoftonline.us/`
 - **GCC High/DoD:** Consult your cloud administrator
+
+## Automated Secret Management
+
+### Secret rotation failures
+
+**Symptoms:**
+
+- Notifications about secret rotation attempts
+- Workflows failing due to authentication after secret updates
+- Azure portal shows unexpected new secrets
+
+**Causes:**
+
+- OnFusionCoE automatic secret rotation process
+- Secrets nearing 30-day expiration window
+- Self-healing response to manually deleted secrets
+
+**Solutions:**
+
+1. **Normal Operation**: OnFusionCoE automatically manages secret rotation - no action required
+2. **Manual Secret Deletion**: If you manually deleted a secret, OnFusionCoE will recreate it automatically
+3. **GitHub Secret Updates**: If automatic rotation fails, manually update `FUSIONCOE_SP_SECRET` with new value from Azure portal
+
+### Unexpected secret creation
+
+**Symptoms:**
+
+- New secrets appear in Azure portal without manual creation
+- Multiple secrets exist for the same app registration
+
+**Explanation:**
+
+This is normal behavior. OnFusionCoE automatically:
+
+- Creates new secrets before current ones expire (30-day window)
+- Recreates secrets if they are manually deleted (self-healing)
+- Maintains resource-specific secrets for different authentication contexts
+
+**Action Required:** None - this is automated lifecycle management
+
+### Self-healing secret recreation
+
+**Symptoms:**
+
+- Secrets reappear after being deleted
+- Authentication resumes after brief failure
+
+**Explanation:**
+
+OnFusionCoE monitors secret availability and automatically recreates secrets that are:
+
+- Manually deleted from Azure/Entra ID
+- Corrupted or inaccessible
+- Missing from expected locations
+
+**Benefits:**
+
+- Eliminates manual secret management
+- Provides resilience against accidental deletion
+- Ensures continuous service availability
 
 ## Permission Errors
 

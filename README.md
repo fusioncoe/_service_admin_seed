@@ -18,11 +18,13 @@ OnFusionCoE follows a **zero-trust security model** where your credentials never
 
 - **Customer Control**: All service principal credentials remain exclusively in your GitHub repository secrets
 - **Service Isolation**: The OnFusionCoE service orchestrates workflows without ever accessing your secrets
+- **Automated Secret Management**: Enterprise-grade secret lifecycle management with automatic 30-day rotation and self-healing capabilities
+- **Resource-Specific Scoping**: Each secret dedicated to specific resources with narrow usage scope for compromise resistance
 - **Secure Proxy**: GitHub Actions serve as authenticated proxies between OnFusionCoE and your Microsoft cloud resources
 - **Complete Audit Trail**: All operations logged in your GitHub Actions run history
 - **Revocable Access**: You maintain full control over permissions and can revoke access at any time
 
-The workflows in this repository use actions from [`fusioncoe/onfusioncoe-actions-g2`](https://github.com/fusioncoe/onfusioncoe-actions-g2/tree/v0), which serve as the secure execution layer for OnFusionCoE operations.
+The workflows in this repository use actions from [`fusioncoe/onfusioncoe-actions-g2`](https://github.com/fusioncoe/onfusioncoe-actions-g2/tree/v0), which serve as the secure execution layer for OnFusionCoE operations and provide automated secret lifecycle management.
 
 ## What This Repository Does
 

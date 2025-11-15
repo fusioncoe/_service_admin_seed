@@ -14,7 +14,7 @@ OnFusionCoE implements a **zero-trust security model** with multiple layers of p
 2. **Authentication** - Multi-scope OAuth2 authentication to Microsoft services
 3. **Data Integrity** - Cryptographic verification of all workflow outputs
 4. **Origin Verification** - Confirming outputs come from your authorized repository
-5. **Encrypted Communication** - All data encrypted in transit using libsodium
+5. **Encrypted Communication** - Secure data encryption, with libsodium used specifically for GitHub repository and environment secrets for new App Registrations
 
 ### Zero-Trust Architecture
 
@@ -53,11 +53,12 @@ OnFusionCoE implements a **zero-trust security model** with multiple layers of p
 
 **Key Security Principles:**
 
-1. **Customer Control**: All sensitive credentials remain in your GitHub environment
-2. **Service Isolation**: OnFusionCoE orchestrates without accessing secrets
+1. **No Secret Sharing**: No secrets are ever shared with the OnFusionCoE service
+2. **ID-Only Orchestration**: OnFusionCoE tracks only specific IDs (tenant/application IDs, secret IDs, connection identities) - never actual secret values
 3. **Secure Proxy**: GitHub Actions authenticate on your behalf using your credentials
-4. **Audit Trail**: Complete operation history in your GitHub Actions runs
-5. **Revocable Access**: You maintain full control over permissions and access
+4. **Automated Secret Management**: Service automatically rotates secrets within 30 days of expiration and recovers from secret removal
+5. **Audit Trail**: Complete operation history in your GitHub Actions runs
+6. **Revocable Access**: You maintain full control over permissions and access
 
 ## FsnxApiClient - The Secure Execution Layer
 
@@ -75,9 +76,26 @@ All workflow actions use the `FsnxApiClient` class from the [`fusioncoe/onfusion
 
 - **Client Credential Flow**: Uses Azure AD application credentials for authentication
 - **Scope-Based Access**: Fine-grained permissions per operation (Microsoft Graph, Power Platform)
-- **Encrypted Payloads**: All sensitive orchestration data encrypted in transit
-- **No Credential Exposure**: OnFusionCoE service never accesses your secrets
-- **Token Isolation**: Authentication tokens scoped per API and cached securely
+- **ID-Only Backend**: Service tracks specific IDs only - never accesses actual secrets:
+  - Tenant and application IDs for service management app registration
+  - App registration secret IDs (but not the actual secret values)
+  - Environment-specific DevOps and Power Automate connection identities
+- **Automated Secret Lifecycle Management**: For app registration secrets created by the service:
+  - Tracks secret ID, creation date, expiration date for current and previous versions
+  - Automatically updates secrets within 30 days of expiration
+  - Creates new secrets if existing ones are removed from Azure/Entra ID
+  - Uses dedicated secrets for each resource requiring app registration authentication
+  - Names secrets to indicate their specific resource usage scope
+- **Secret Isolation & Scoping**:
+  - GitHub repository and environment secrets encrypted using libsodium for new App Registrations
+  - Each secret dedicated to a specific resource with narrow scope of use
+  - Secrets never exposed outside their intended resource context
+  - Resource-specific naming convention prevents cross-resource secret usage
+- **No Secret Sharing**: OnFusionCoE service never accesses or stores actual customer secrets
+- **Compromise Resistance**: Narrow secret scoping makes compromised secrets very unlikely
+- **Dual App Registration Management**: Backend manages two types of app registrations:
+  - Service management app registration (tenant/application IDs)
+  - Environment-specific DevOps and Power Automate connection identities
 
 ## Service Principal Authentication
 
@@ -100,6 +118,57 @@ The service principal (configured via `FUSIONCOE_SP_APPLICATION_ID`, `FUSIONCOE_
 - **Use minimum required permissions** - Only grant API permissions necessary for OnFusionCoE operations
 - **Monitor sign-in logs** - Review Entra ID sign-in logs for unusual activity
 - **Protect secrets** - Never commit secrets to source control or share them via unsecured channels
+
+## Automated Secret Lifecycle Management
+
+OnFusionCoE provides enterprise-grade automated secret lifecycle management that eliminates manual secret rotation tasks and provides self-healing capabilities.
+
+### Secret Rotation Process
+
+- **Automatic Rotation**: All app registration secrets are automatically rotated within 30 days of their expiration date
+- **Proactive Updates**: New secrets created before current ones expire to ensure continuous operation
+- **Zero Downtime**: Rotation process designed to maintain service availability during updates
+- **Version Management**: System tracks current and previous secret versions during transition periods
+
+### Self-Healing Capabilities
+
+- **Missing Secret Detection**: Service automatically detects when secrets are removed from Azure/Entra ID
+- **Automatic Recreation**: Creates new secrets immediately when existing ones are deleted or corrupted
+- **Resource Monitoring**: Continuously monitors secret availability across all connected resources
+- **Failure Recovery**: Automatic recovery from secret-related authentication failures
+
+### Resource-Specific Secret Scoping
+
+- **Dedicated Secrets**: Each resource requiring authentication receives its own unique secret
+- **Named Scoping**: Secret names indicate their specific resource usage to prevent cross-resource usage
+- **Narrow Scope Usage**: Each secret is limited to its intended resource context only
+- **Isolation Boundaries**: Secrets cannot be used outside their designated resource scope
+
+### Compromise Resistance Features
+
+- **Limited Blast Radius**: Compromised secrets affect only their specific resource due to narrow scoping
+- **Rapid Rotation**: 30-day maximum lifetime limits exposure window for compromised secrets
+- **Detection and Response**: Automated detection of unusual secret usage patterns
+- **Immediate Invalidation**: Compromised secrets can be immediately rotated without affecting other resources
+
+### Security Architecture
+
+- **ID-Only Backend Tracking**: OnFusionCoE backend tracks specific IDs only - never actual secrets:
+  - Tenant and application IDs for service management app registration
+  - App registration secret IDs (but not the actual secret values)
+  - Environment-specific DevOps and Power Automate connection identities
+- **libsodium Encryption**: GitHub repository and environment secrets encrypted using libsodium for newly created App Registrations
+- **No Secret Exposure**: Secrets never transmitted or stored outside their intended GitHub repository/environment
+- **Zero Trust Model**: No component trusts that secrets will remain valid - all components verify authentication in real-time
+
+### Dual App Registration Management
+
+OnFusionCoE manages two distinct types of app registrations:
+
+1. **Service Management App Registrations**: Used for backend service operations (tenant/application IDs only)
+2. **Environment-Specific Identities**: DevOps and Power Automate connection identities for each environment
+
+This separation ensures that service management operations are isolated from environment-specific authentication.
 
 ## Workflow Output Authentication
 

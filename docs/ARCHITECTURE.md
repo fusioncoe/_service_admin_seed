@@ -138,6 +138,12 @@ OnFusionCoE is a DevOps-as-a-Service platform that orchestrates Power Platform a
 ### What OnFusionCoE Manages
 
 ✅ **Orchestration Logic**: Determines when and what workflows to trigger
+✅ **Automated Secret Lifecycle**: 
+- Tracks secret expiration dates and automatically rotates within 30 days
+- Recreates secrets if they are removed from Azure/Entra ID
+- Manages resource-specific secret scoping and naming conventions
+- Provides self-healing capabilities for authentication failures
+✅ **ID-Only Tracking**: Stores only tenant IDs and application IDs - never actual secrets
 ✅ **Encrypted Payloads**: Sends encrypted operation instructions
 ✅ **Result Verification**: Validates authenticity and integrity of workflow outputs
 ✅ **State Management**: Tracks overall DevOps process state
